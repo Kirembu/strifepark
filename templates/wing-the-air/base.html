@@ -28,16 +28,16 @@
           <li><a href="/">Home</a></li>
           <li><a href="/alice">Alice</a></li>
 		  		{% if user.is_authenticated %}
-					<li><a href="/account/logout">Logout</a></li>   
+					<li><a href="/accounts/logout">Logout</a></li>   
 					<li><a href='/blog/compose'>Blog Add New</a></li>
-					<li><a href="/account/avatar/change/">My Account</a></li>					
+					<li><a href="/accounts/">My Account</a></li>					
 				{% else %}		
 					<li><a href='/archive'> Archive </a></li>
-					<li><a href="/account/login">Login</a></li>
+					<li><a href="/accounts/login">Login</a></li>
 				{% endif %}
 				 
 			<li><a href="/zerxis/">Zerxis</a></li>
-
+			<li><a href="/polls/">Polls</a></li>
         
 					<li class="last"><a href="#">Contact</a></li>
       
@@ -64,8 +64,8 @@
           <input type="submit" class="search-submit" value="GO" />
         </form>
       </div>
-      <span class="left"><a href="#">Twitter Search</a></span>
-      <div class="right"> <span class="cart"> <a href="#" class="cart-ico">&nbsp;</a> <strong>{{user}}</strong> </span> <span class="left more-links"> <a href="#">Checkout</a> <a href="#">Details</a> </span> </div>
+      <span class="left"><a href="/zerxis/">Twitter Search</a></span>
+      <div class="right"></div>
     </div>
     <!-- End Search, etc -->
     <!-- Content -->
