@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Strife Park</title>
+    <meta name="description" content="blog, twitter client, social, random">
+    <meta name="author" content="kirembu">
+{% block styles %}
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+
+    <link href="/static/bs/bootstrap.css" rel="stylesheet">
+    <link href="/static/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+	
+	{% endblock styles %}
+	{% block extra-styles %}
+	<link rel="stylesheet" href="/static/bs/css/phoenix_core.css" type="text/css" media="screen">
+	{% endblock extra-styles %}
+	{% block icos %}
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/static/bs/ico/favicon.bmp">
+
+	{% endblock icos %}
+	{% load avatar_tags %}
+	    <script src="/static/bs/js/util.js"></script>
+    <script>
+    function updateMsgCount() {
+	    downloadUrl("/messages/count/", "GET", null, onChatsReturned);
+		downloadUrl("/messages/", "GET", null, onMessagesReturned);
+	}
+	    function updateMessages() {
+	    downloadUrl("/messages/", "GET", null, onMessagesReturned);
+	}
+	function sendVote(form) {
+		
+		downloadUrl("/vote/", "POST", "content=" + encodeURI(document.getElementById("messages").value), onChatsReturned);
+		document.getElementById("chattext").value = "";
+	}
+
+	function onChatsReturned(responseText) {
+		document.getElementById("msgCount").innerHTML = responseText;
+		scrollToBottom();
+	}
+		function onMessagesReturned(responseText) {
+		document.getElementById("messages").innerHTML = responseText;
+		scrollToBottom();
+	}
+
+	function setup() {
+		window.setInterval("updateMsgCount()", 5000);
+		updateMsgCount();
+	}
+	
+	function scrollToBottom() {
+	  var chatDiv = document.getElementById("messages");
+	  chatDiv.scrollTop = chatDiv.scrollHeight;
+	}
+	
+	   function MessagesSeen() {
+	    downloadUrl("/messages/seen/", "GET", null, onChatsReturned);
+		$("logo").fadeOut();
+	}
+	function onVoteReturned(responseText) {
+		document.getElementById("messages").innerHTML = responseText;
+		scrollToBottom();
+	}
+	
+	
+		function vote(form) {
+		
+		downloadUrl("/vote", "POST", "content=" + encodeURI(document.getElementById("messages").value), onChatsReturned);
+		document.getElementById("chattext").value = "";
+	}
+
+
+	</script>
+  </head>
+
+  <body onload="setup();">
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+		
+		<div id="logo">
+			<a class="brand" href="/">Strife Park</a>
+		</div>
+
+          <!-- <a class="brand" href="/">Strife Park</a> -->
+		  <form id="search-form" class="js-search-form" action="/search" method="GET">
+    <span class="glass js-search-action"><i></i></span>
+    <input value="" placeholder="Search" name="q" id="search-query" type="text">
+  </form>
+			  {% block nav %}
+          <ul class="nav">
+
+            <li class="active"><a href="/">Home</a></li>
+			
+            <li><a href="/accounts/user/kirembu/">About</a></li>
+            <li><a href="/zerxis">Zerxis</a></li>
+			{% block auth %}			
+			{% if user.is_authenticated %}     
+			<li><a href="/accounts/avatar/change">Avatar</a></li>
+			<li><a href="/compose">Compose</a></li>
+
+			
+			<li class="dropdown" data-dropdown="dropdown">
+              <a href="#" class="dropdown-toggle">{{user.username}}</a>
+              <ul class="dropdown-menu">
+                <li class=""><a href="/accounts/">{{user.username}}</a></li>
+                <li class=""><a href="/accounts/logout">Logout</a></li>
+              </ul>
+            </li>
+			
+			{% else %}
+			
+			<li class="dropdown" data-dropdown="dropdown">
+              <a href="#" class="dropdown-toggle">Login</a>
+              <ul class="dropdown-menu">
+                <li class=""><a href="/accounts/login">Login</a></li>
+                <li class=""><a href="">Sign up</a></li>
+				<li class="">
+			<a href="#">Open ID</a>
+
+</li>
+              </ul>
+            </li>
+		{% endif %}			  
+	{%endblock auth %}
+	  
+          </ul>
+		  
+		  {% endblock nav %}
+
+{% if user.is_authenticated %}<img id="spavi" width="24" height="24" src="{% avatar_url user %}" alt="{{ user.username }}">
+<div class="noticications"><div id="msgCount"></div><div id="messages"></div></div>{% endif %}
+
+        </div>
+      </div>
+    </div>
+
+ <div class="container-fluid" style="min-height: 550px;padding-top: 45px;padding-left: 50px;">
+ <div class="content">
+ <div class="row">
+<div class="span10">
+
+	
+{% block content %}
+
+            
+
+{% endblock content %}
+</div>
+
+
+</div>
+
+ </div>
+      <footer>
+
+        <p>&copy; StrifePark 2012</p>
+      </footer>
+
+    <!-- /container -->
+
+  </body>
+<!--   <link rel="stylesheet" href="/static/bs/css/phoenix_more.bundle.css" type="text/css" media="screen"> -->
+      <script src="/static/bs/js/jquery.min.js"></script>
+    <script src="/static/bs/js/jquery.tablesorter.min.js"></script>
+    <script src="/static/bs/js/prettify.js"></script>
+    <script src="/static/bs/js/bootstrap-dropdown.js"></script>
+    <script src="/static/bs/js/bootstrap-twipsy.js"></script>
+    <script src="/static/bs/js/bootstrap-scrollspy.js"></script>
+    
+
+</html>

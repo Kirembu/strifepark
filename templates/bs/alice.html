@@ -1,0 +1,59 @@
+{% extends "bs/base.html" %}
+   {% load avatar_tags %} 
+ 
+    {% block content %}
+	<div class="stream-container">
+
+      <div class="stream profile-stream" media="true">
+        
+		
+        {% for item in text %}
+<div class="js-stream-items stream-items" id="stream-items-id">
+	<div class="js-stream-item stream-item" data-item-id="123456" data-item-type="tweet" id="stream-item-tweet-123456}">
+		<div class="more"></div>
+ <div class="stream-item-content tweet js-actionable-tweet js-stream-tweet stream-tweet  " data-is-reply-to="true" data-tweet-id="{{entry.id}}" data-item-id="{{entry.id}}" data-screen-name="{{entry.authour}}" data-user-id="48656739">
+  <div class="tweet-dogear"></div>
+ 
+  <div class="tweet-image">
+      <img src="/media/cover.jpg"  class = "user-profile-link js-action-profile-avatar" />
+  </div>
+  <div class="tweet-content">
+    <div class="tweet-row">
+              <span class="tweet-user-name">
+  <a class="tweet-screen-name user-profile-link js-action-profile-name" data-user-id="{{user.id}}" href="/accounts/user/{{entry.author}}" title="Patrick">{{entry.author}}</a>
+  <span class="tweet-full-name">Through The Looking Glass - Lewis Carroll </span>
+  </span>
+      <div class="tweet-corner">
+        <div class="tweet-meta">
+  <span class="icons">
+                  <div class="extra-icons">
+              <span class="inlinemedia-icons js-icon-container"></span>
+        </div>
+  </span>
+</div>
+      </div>
+    </div>
+    <div class="tweet-row">
+      <div class="tweet-text js-tweet-text"> {{item}} </div>
+    </div>
+          <div class="tweet-row">
+        <a href="/blog/{{entry.slug}}" class="tweet-timestamp js-permalink">
+  <span class="_timestamp js-tweet-timestamp" title="123456" data-time="1324232504000" data-long-form="true">1998</span>
+</a>
+        <span class="tweet-actions js-actions" data-tweet-id="123456">
+  </span>
+      </div>
+	  
+          </div>
+		   
+
+</div></div>
+</div>{% endfor %}
+
+ </div>       
+     
+
+
+
+</div>
+{% endblock content %}

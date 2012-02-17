@@ -1,0 +1,33 @@
+{% extends "wing-the-air/base.html" %}
+{% load avatar_tags %}
+{% block content %}
+<li>
+
+{% if messages %}
+<ul class="notifications">
+{% for message in messages %}
+<li>{{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+<div class="prof-image"> <a href="/">{% avatar entry.author %}</a> </div>
+
+ <span><a href="/blog/{{entry.slug}}"><h2>{{entry.title}}</h2></a></span><br />
+<p/> <span>	{% if truncate %}
+<p>
+{{entry.markdown|safe|truncatewords:"5"}}
+
+{% else %}
+
+{{entry.markdown|safe}}
+
+{% endif  %}
+</span><br />
+<a href="/blog/edit/{{entry.slug}}">edit</a><br/>
+Author: <a href="#">{{entry.author}}</a> </p>
+<p class="price">Time: <strong>{{entry.pub_date|timesince}} </p>
+</strong>
+
+</li>
+{% endblock content %}

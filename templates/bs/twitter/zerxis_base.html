@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Strife Park</title>
+    <meta name="description" content="blog, twitter client, social, random">
+    <meta name="author" content="kirembu">
+{% block styles %}
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+
+    <link href="/static/bs/bootstrap.css" rel="stylesheet">
+    
+    <!-- <link href="/static/bootstrap/assets/css/docs.css" rel="stylesheet" -->>
+    <!-- <link href="/static/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet"> -->
+	
+	{% endblock styles %}
+	{% block extra-styles %}
+	<link rel="stylesheet" href="/static/bs/css/phoenix_core.css" type="text/css" media="screen">
+	{% endblock extra-styles %}
+	{% block icos %}
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/static/bs/ico/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/bs/ico/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/bs/ico/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/bs/ico/apple-touch-icon-114x114.png">
+	{% endblock icos %}
+  </head>
+<body> 			{% block updatestatus %}
+  <form action="/zerxis/" method="post" action = "update" class="update-form">
+  {% csrf_token %}
+ {% if error %}<b>  </b>{% endif %}
+  {{error}}{{timeit}}
+  		<div class="fieldWrapper">
+		{{ form.status.errors }}
+		<label for="id_update">Status:</label><br/>
+		{{ form.status }}
+		<input name="in_reply_to_id" value="{{in_reply_to_id}}" type="hidden" />
+		<div>
+		<span id="remaining">140</span> 
+		 </div>
+		<span id="geo" style="display: none; float: right;"><input onclick="goGeo()" type="checkbox" id="geoloc" name="location" /> <label for="geoloc" id="lblGeo"></label></span>
+		<input type="submit" value="Update" />
+		</div>
+		
+  <script type="text/javascript">
+	started = false;
+	chkbox = document.getElementById("geoloc");
+	if (navigator.geolocation) {
+		geoStatus("Tweet my location");
+		if ("'.$_COOKIE['geo'].'"=="Y") {
+			chkbox.checked = true;
+			goGeo();
+		}
+	}
+	function goGeo(node) {
+		if (started) return;
+		started = true;
+		geoStatus("Locating...");
+		navigator.geolocation.getCurrentPosition(geoSuccess, geoStatus);
+	}
+	function geoStatus(msg) {
+		document.getElementById("geo").style.display = "inline";
+		document.getElementById("lblGeo").innerHTML = msg;
+	}
+	function geoSuccess(position) {
+		geoStatus("Tweet my <a href=\'http://maps.google.co.uk/m?q=" + position.coords.latitude + "," + position.coords.longitude + "\' target=\'blank\'>location</a>");
+		chkbox.value = position.coords.latitude + "," + position.coords.longitude;
+	}
+  </script>
+  
+  <script type="text/javascript">
+function updateCount() {
+var remaining = 140 - document.getElementById("id_status").value.length;
+document.getElementById("remaining").innerHTML = remaining;
+if(remaining < 0) {
+ var colour = "#FF0000";
+ var weight = "bold";
+} else {
+ var colour = "";
+ var weight = "";
+}
+document.getElementById("remaining").style.color = colour;
+document.getElementById("remaining").style.fontWeight = weight;
+setTimeout(updateCount, 400);
+}
+updateCount();
+</script>
+</form>
+
+{% endblock updatestatus %}     
+        
+
+        
+          
+          
+            <div class="button profile-follow-button" data-user-id="48656739">
+
+     <span class="rss"></span> <strong>Update</strong>         
+            </div>
+          
+        
+      
+    
+
+    
+  </div>
+
+  
+  
+</div>
+
+      </div></div>
+  
+    
+  {% block tabs %}
+
+    <ul class="stream-tabs">
+      <li class="stream-tab stream-tab-tweets active">
+        <a class="tab-text" href="#">Blog</a>
+      </li>
+      
+        <li class="stream-tab stream-tab-favorites">
+          <a class="tab-text" href="/alice/">Alice</a>
+        </li>
+
+      
+      
+      <li class="stream-tab stream-tab-following">
+        <a class="tab-text" href="#">Zerxis</a>
+      </li>
+      
+      
+      
+      <li class="stream-tab stream-tab-followers">
+        <a class="tab-text" href="#">Followers</a>
+      </li>
+      
+      
+      <li class="stream-tab stream-tab-lists dropdown-link">
+        <p class="tab-text">Lists<i></i></p>
+      </li>
+    </ul>
+	   {% endblock tabs %}   
+</div>
+
+      
+      <div class="stream-manager js-stream-manager-container" id="profile-stream-manager">
+  
+    <div class="stream-title"></div>
+    {% block statuses %}
+{% endblock statuses %}
+
+
+
+<script language="javascript">
+function fadejQuery(thediv) {
+$(thediv).fadeOut();
+};
+</script>
+  </html>

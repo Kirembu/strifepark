@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)http://mattthephonegeek.com/html5/examples/canvas.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>:: my html5 playground :: Canvas</title>
+<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+<script type="text/javascript" src="./my html5 playground    Canvas_files/halma.js"></script>
+<script type="text/javascript" src="./my html5 playground    Canvas_files/chekers-debug.js"></script>
+<link rel="stylesheet" type="text/css" href="./my html5 playground    Canvas_files/mainStyle.css">
+<link rel="stylesheet" type="text/css" href="./my html5 playground    Canvas_files/helmaStyle.css">
+</head>
+<body>
+	<script>
+		//Necessary to access the firebug console.
+		window.loadFirebugConsole();
+	</script>
+	<header>
+		<hgroup>
+			<h1>Canvas Playground</h1>
+		</hgroup>
+	</header>
+
+<nav>
+	<ul>
+		<li><a href="http://mattthephonegeek.com/html5/index.html">home</a></li>
+		<li><a href="http://mattthephonegeek.com/html5/examples/canvas.html#">canvas</a></li>
+	</ul>
+</nav>	
+	
+	
+<h1>Let's explore the <code>&lt;canvas&gt;</code></h1>
+
+<h2>HTML5 &lt;canvas&gt; Checkers Game</h2>
+
+<p>Mark Pilgrim teaches us some basics of the <code>&lt;canvas&gt;</code> in the chapter 
+<a href="http://diveintohtml5.org/canvas.html" target="_blank">"Let's Call It a Draw(ing Surface)"</a> in his 
+free online book - <a href="http://diveintohtml5.org/" target="_blank">Dive Into HTML5</a>. 
+The chapter culminates with an awesome example - an addictive game called Halma.  
+You can try Mark's Halma game  <a href="http://diveintohtml5.org/examples/canvas-halma.html" target="_blank">here</a>.
+<br><br>
+I decided to dissecet the Halma game and use the source code as the basis for my own
+Checkers game.  On my blog, I'll be posting some discussions on how this code actually works, so stay tuned.  Also,
+This game is kind of useless at the moment since both people have to sit at the same physical computer screen to play.  I have plans
+to make this thing multiplayer as I learn more about HTML5. For now - Enjoy beating yourself in Checkers! 
+<a href="mailto:vwmattr@gmail.com">Email me</a> if you find any bugs.</p>
+
+<canvas id="checkerscanvas" width="401" height="401"></canvas>
+<p style="margin-top:20;font-style:normal" class="legend"><span id="checkerturn">Black's Turn!</span></p>
+<p style="margin-top:0;font-style:normal" class="legend">
+	Moves: <span id="checkersmovecount">13</span>
+	Red Moves: <span id="redmovecount">7</span>
+	Black Moves: <span id="blackmovecount">6</span>
+	</p>
+<script>
+	Checkers.initCheckersGame(document.getElementById("checkerscanvas"),
+							 document.getElementById("checkersmovecount"),
+							 document.getElementById("checkerturn"),
+							 document.getElementById("redmovecount"),
+							 document.getElementById("blackmovecount"));
+</script>
+
+</body></html>

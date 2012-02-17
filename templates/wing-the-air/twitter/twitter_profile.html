@@ -1,0 +1,33 @@
+{% extends "wing-the-air/twitter/zerxis_tab1.html" %}
+{% block zerxis_userprofile %}
+    <ul>
+		zerxis_user Id: {{zerxis_user.id}}<br/>
+		Name: {{zerxis_user.name}}<br/>
+		Screen Name: {{zerxis_user.screen_name}}<br/>
+		Location: {{zerxis_user.location}}<br/>
+		Description: {{zerxis_user.description}}<br/>
+		Prodile Image: {{zerxis_user.profile_image_url}}<br/>
+		Background Tile:{{zerxis_user.profile_background_tile}}<br/>
+		Background Image URL: {{zerxis_user.profile_background_image_url}}<br/>
+		Profile Sidebar File Color: {{zerxis_user.profile_sidebar_fill_color}}<br/>
+		Back groud color: {{zerxis_user.profile_background_color}}<br/>
+		Link Color: {{zerxis_user.profile_link_color}}<br/>
+		Profile Text Color: {{zerxis_user.profile_text_color}}<br/>
+		Protected: {{zerxis_user.protected}}<br/>
+		UTC offset: {{zerxis_user.utc_offset}}<br/>
+		Time Zone: {{zerxis_user.time_zone}}<br/>
+		Url: {{zerxis_user.url}}<br/>
+		Last Status: {{zerxis_user.status.text}}<br/>
+		Tweets: {{zerxis_user.statuses_count}}<br/>
+		Followers: {{zerxis_user.followers_count}}<br/>
+		Friends: {{zerxis_user.friends_count}}<br/>
+		Favourites: {{zerxis_user.favourites_count}}<br/>
+		Geo: {{zerxis_user.geo_enabled}}<br/>
+		Verified: {{zerxis_user.verified}}<br/>
+		Language: {{zerxis_user.lang}}<br/>
+		Notifications: {{zerxis_user.notifications}}<br/>
+		Contributors: {{zerxis_user.contributors_enabled}}<br/>
+		Created At: {{zerxis_user.created_at}}<br/>
+		Lists: {{zerxis_user.listed_count}}<br/>
+	</ul>
+{% endblock zerxis_userprofile %}	

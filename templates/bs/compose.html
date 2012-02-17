@@ -1,0 +1,31 @@
+{% extends "bs/base.html" %}
+{% block head %}
+
+{% endblock head %}
+{% block content %}	
+
+	<h1>{{title}}</h1>
+    <form id="entry_form" action="/compose/" method="post">
+    {% csrf_token %}
+	<input type="hidden" name="key" value={{key}}/>
+
+				{{ form.title }}</br>
+				{% if form.title.errors %} {{ form.title.errors }}</br>{% endif %}</br>
+				{{ form.markdown }}</br>
+				{% if form.markdown.errors %}{{ form.markdown.errors }}{% endif %}
+				{% if form.pub_date.errors %}<span class="help-inline">{{ form.pub_date.errors }}</span>{% endif %}
+				{{ form.pub_date }}</br>
+				{% if form.author.errors %}<span class="help-inline">{{ form.author.errors }}</span>{% endif %}
+				
+				{% if author %}
+				{{author}}
+				{% else %}
+				{{user}}
+				{% endif %}
+		
+		<input type='hidden' name='key' value='{{key}}' />
+		<p><input type="submit" name="imageField" id="imageField" value="Submit" class="send"></p>
+		</div>
+    </form>
+	{% endblock content %}
+	

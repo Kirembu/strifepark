@@ -1,0 +1,35 @@
+{% extends "bs/base.html" %}
+{% load avatar_tags %}
+{% block content %}
+			<script>
+            $(function () {
+              $("a[rel=popover]")
+                .popover({
+                  offset: 10
+                })
+                .click(function(e) {
+                  e.preventDefault()
+                })
+            })
+          </script>
+
+
+<div class="prof-image"> <a href="/">{% avatar entry.author %}</a> </div>
+
+ <span><a href="/blog/{{entry.slug}}"><h2>{{entry.title}}</h2></a></span><br />
+<p/> <span>	{% if truncate %}
+<p>
+{{entry.markdown|safe|truncatewords:"5"}}
+
+{% else %}
+
+{{entry.markdown|safe}}
+
+{% endif  %}
+</span><br />
+<a href="/blog/edit/{{entry.slug}}">edit</a><br/>
+Author: <a href="/accounts/user/{{ entry.author }}">{{entry.author}}</a> </p>
+<p class="price">Time: <strong>{{entry.pub_date|timesince}} </p>
+</strong>
+
+{% endblock content %}

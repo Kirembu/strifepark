@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Strife Park</title>
+    <meta name="description" content="blog, twitter client, social, random">
+    <meta name="author" content="kirembu">
+{% block styles %}
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le styles -->
+
+    <link href="/static/bootstrap/bootstrap.css" rel="stylesheet">
+    
+    <!-- <link href="/static/bootstrap/assets/css/docs.css" rel="stylesheet" -->>
+    <link href="/static/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+	
+	{% endblock styles %}
+	{% block extra-styles %}
+	<link rel="stylesheet" href="/static/bootstrap/css/phoenix_core_logged_out.bundle.css" type="text/css" media="screen">
+	{% endblock extra-styles %}
+	{% block icos %}
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/static/bootstrap/ico/favicon.ico">
+    <link rel="apple-touch-icon" href="/static/bootstrap/ico/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/static/bootstrap/ico/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/static/bootstrap/ico/apple-touch-icon-114x114.png">
+	{% endblock icos %}
+  </head>
+
+  <body style="{background:url(/static/phoenix/img/Japanese_Bamboo_Forest.jpg) repeat-x scroll left 40px #C0DEED;color:#333;}" >
+
+    <div class="topbar">
+      <div class="fill">
+        <div class="container">
+          <a class="brand" href="/">Strife Park</a>
+		  <form id="search-form" class="js-search-form" action="/search" method="GET">
+    <span class="glass js-search-action"><i></i></span>
+    <input value="" placeholder="Search" name="q" id="search-query" type="text">
+  </form>
+			  {% block nav %}
+          <ul class="nav">
+		  
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/accounts/user/kirembu/">About</a></li>
+            <li><a href="/zerxis">Zerxis</a></li>
+		  {% block auth %}			
+			{% if user.is_authenticated %}     
+			
+			<li class="dropdown" data-dropdown="dropdown">
+              <a href="#" class="dropdown-toggle">{{user.username}}</a>
+              <ul class="dropdown-menu">
+                <li class=""><a href="/accounts/">
+
+		  {{user.username}}
+
+			</a></li>
+                <li class=""><a href="/accounts/logout">Logout</a></li>
+              </ul>
+            </li>
+			{% else %}
+						<li class="dropdown" data-dropdown="dropdown">
+              <a href="#" class="dropdown-toggle">Login</a>
+              <ul class="dropdown-menu">
+                <li class=""><a href="/accounts/login"></a>Login</li>
+                <li class=""><a href="/accounts/signup">Sign Up</a></li>
+              </ul>
+            </li>
+
+{% endif %}			  {%endblock auth %}
+	  
+          </ul>
+		  
+		  {% endblock nav %}
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+<div id="page-outer">
+ <div id="page-container" class="page-container profile-container">
+ <div class="main-content" style="min-height: 550px;">
+{% block content %}
+      <div class="content">
+        <div class="page-header">
+          <h1>Strife Park<small>Patrick's Playground</small></h1>
+        </div>
+        <div class="row">
+          <div class="span10">
+            <h2>{{title}}</h2>
+						
+			
+          </div>
+          <div class="span4">
+            <h3>Secondary content</h3>
+	  <a href="#" class="btn danger" rel="popover" data-content="And here's some amazing content. It's very engaging. right?" data-original-title="A title">hover for popover</a>
+
+          </div>
+		  
+        </div>
+      </div>
+{% endblock content %}
+      <footer>
+
+        <p>&copy; StrifePark 2012</p>
+      </footer>
+
+    </div> <!-- /container -->
+<div class="dashboard profile-dashboard"><div class="component" style="display: none; "></div>
+  <div class="component"><div class="dashboard-profile-annotations clearfix">
+  <h2 class="dashboard-profile-title"><img src="/media/avatars/kirembu/resized/80/avatars/kirembu/3596cbb9135ecd860801964820a49597.jpeg" alt="kirembu" width="80" height="80" class="profile-dashboard"> About @Kirembu</h2>
+  </div>
+<ul class="user-stats clearfix">
+          <li><a class="user-stats-count user-stats-tweets" href="http://twitter.com/#!/Kirembu">7,874<span class="user-stats-stat">Tweets</span></a></li>
+    <li><a class="user-stats-count user-stats-following" href="http://twitter.com/#!/Kirembu/following">539<span class="user-stats-stat">Following</span></a></li>
+    <li><a class="user-stats-count user-stats-followers" href="http://twitter.com/#!/Kirembu/followers">568,000<span class="user-stats-stat">Followers</span></a></li>
+    <li><a class="user-stats-count user-stats-listed" href="http://twitter.com/#!/Kirembu/lists/memberships">10,000<span class="user-stats-stat">Listed</span></a></li>
+</ul><hr class="component-spacer"></div>
+      </div>
+  </body>
+  <link rel="stylesheet" href="/static/bootstrap/css/phoenix_more.bundle.css" type="text/css" media="screen">
+      <script src="/static/bootstrap/js/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/jquery.tablesorter.min.js"></script>
+    <script src="/static/bootstrap/js/prettify.js"></script>
+    <script>$(function () { prettyPrint() })</script>
+    <script src="/static/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-twipsy.js"></script>
+    <script src="/static/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="/static/bootstrap/js/application.js"></script>
+
+</html>

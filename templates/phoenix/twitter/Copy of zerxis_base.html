@@ -1,0 +1,272 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+{% load avatar_tags %}
+
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="/static/wta/css/style.css" type="text/css" media="all" />
+<!--[if lte IE 6]><style type="text/css" media="screen">.tabbed { height:420px; }</style><![endif]-->
+<script src="/static/wta/js/jquery-1.4.1.min.js" type="text/javascript"></script>
+<script src="/static/wta/js/jquery.jcarousel.pack.js" type="text/javascript"></script>
+<script src="/static/wta/js/jquery.slide.js" type="text/javascript"></script>
+<script src="/static/wta/js/jquery-func.js" type="text/javascript"></script>
+{% block head %}{% endblock head %}
+</head>
+
+<title>{{title}}</title>
+<body>
+<!-- Top -->
+<div id="top">
+  <div class="shell">
+    <!-- Header -->
+    <div id="header">
+      <h1 id="logo"><a href="#">Strife Park</a></h1>
+      <div id="navigation">
+        <ul>
+          <li><a href="/">Home</a></li>
+			<li><a href="/zerxis/">Zerxis</a></li>
+			<li><a href="/zerxis/mentions/">Mentions</a></li>
+			<li><a href="/zerxis/directs/">Directs</a></li>
+			<li><a href="/zerxis/favorites/">Favorites</a></li>
+        
+					<li class="last"><a href="#">Contact</a></li>
+      
+			</ul>
+      </div>
+    </div>
+    <!-- End Header -->
+    <!-- Slider -->
+
+    <!-- End Slider -->
+  </div>
+</div>
+<!-- Top -->
+<!-- Main -->
+<div id="main">
+  <div class="shell">
+    <!-- Search, etc -->
+    <div class="options">
+      <div class="search">
+        <form action="/search/" method="get">
+          <span class="zerxis_field">
+          <input type="text" placeholder ="SEARCH" name="q" class="blink" value="{{query|escape}}" title="" />
+          </span>
+          <input type="submit" class="search-submit" value="GO" />
+        </form>
+      </div>
+      <span class="left"><a href="#">Twitter Search</a></span>
+      <div class="right"> <span class="cart"> <a href="#" class="cart-ico">&nbsp;</a> <strong>{{user.screen_name}}</strong> </span> <span class="left more-links"> <a href="#">Checkout</a> <a href="#">Details</a> </span> </div>
+    </div>
+    <!-- End Search, etc -->
+    <!-- Content -->
+    <div id="content">
+      <!-- Tabs -->
+	   <div class="tabs">
+        <ul>
+          <li><a href="/zerxis/" class="active"><span>Home</span></a></li>
+          <li><a href="/zerxis/mentions/"><span>Mentions</span></a></li>
+          <li><a href="/zerxis/replies/" class="red"><span>Direct</span></a></li>
+		  <li><a href="/zerxis/friends/" class="red"><span>Friends</span></a></li>
+		  <li><a href="/zerxis/user/{{user}}/followers/" class="red"><span>Followers</span></a></li>
+		  <li><a href="/zerxis/user/{{user}}/favorites/" class="red"><span>Favorites</span></a></li>
+		  <li><a href="/zerxis/user/{{user}}/lists/" class="red"><span>Lists</span></a></li>
+		  <li><a href="/zerxis/public/" class="red"><span>Public Timeline</span></a></li>
+        </ul>
+      </div>
+      <!-- Tabs -->
+      <!-- Container -->
+      <div id="container">
+	  {% block updatestatus %}
+  <form action="/zerxis/" method="post" action = "update" class="update-form">
+  {% csrf_token %}
+ {% if error %}<b>  </b>{% endif %}
+  {{error}}
+  		<div class="fieldWrapper">
+		{{ form.status.errors }}
+		<label for="id_update">Status:</label><br/>
+		{{ form.status }}
+		<input name="in_reply_to_id" value="{{in_reply_to_id}}" type="hidden" />
+		<div>
+		<span id="remaining">140</span> 
+		 </div>
+		<span id="geo" style="display: none; float: right;"><input onclick="goGeo()" type="checkbox" id="geoloc" name="location" /> <label for="geoloc" id="lblGeo"></label></span>
+		<input type="submit" value="Update" />
+		</div>
+		
+  <script type="text/javascript">
+	started = false;
+	chkbox = document.getElementById("geoloc");
+	if (navigator.geolocation) {
+		geoStatus("Tweet my location");
+		if ("'.$_COOKIE['geo'].'"=="Y") {
+			chkbox.checked = true;
+			goGeo();
+		}
+	}
+	function goGeo(node) {
+		if (started) return;
+		started = true;
+		geoStatus("Locating...");
+		navigator.geolocation.getCurrentPosition(geoSuccess, geoStatus);
+	}
+	function geoStatus(msg) {
+		document.getElementById("geo").style.display = "inline";
+		document.getElementById("lblGeo").innerHTML = msg;
+	}
+	function geoSuccess(position) {
+		geoStatus("Tweet my <a href=\'http://maps.google.co.uk/m?q=" + position.coords.latitude + "," + position.coords.longitude + "\' target=\'blank\'>location</a>");
+		chkbox.value = position.coords.latitude + "," + position.coords.longitude;
+	}
+  </script>
+</form>
+
+{% endblock updatestatus %}
+
+        <div class="tabbed">
+          <!-- First Tab Content -->
+          <div class="tab-content" style="display:block;">
+            <div class="items">
+              <div class="cl">&nbsp;</div>
+              <ul>
+			  {% block statuses %}
+				{% for s in Statuses %}
+				<li>
+				<p>
+				<div class="prof-image" > <a href="#">{# avatar user #}</a> </div>
+
+
+				<span><a href="/zerxis/user/{{s.user.screen_name}}/"><h2>{{s.user.name}}</h2></a></span><br />
+				<span>	
+				{{s.text|safe}}
+				<p class="price">Time: <strong><a href="/zerxis/user/{{s.user.screen_name}}/status/{{s.id}}">{{s.relative_created_at}}</a></strong> </p>
+
+				<p>Via:{{s.source|safe}}</p>
+				</li>
+				{% endfor %}
+				{% endblock statuses %}
+              </ul>
+              <div class="cl">&nbsp;</div>
+            </div>
+          </div>
+          <!-- End First Tab Content -->
+          <!-- Second Tab Content -->
+          <div class="tab-content">
+            <div class="items">
+              <div class="cl">&nbsp;</div>
+              <ul>
+			  {% block Replies %}
+                			{% for s in Replies %}
+			<li>
+			<p>
+			<div class="prof-image" > <a href="#">{# avatar user #}</a> </div>
+
+
+			<span><a href="/zerxis/user/{{s.user.screen_name}}/"><h2>{{s.user.name}}</h2></a></span><br />
+			<span>	
+			{{s.text|safe}}
+			<p class="price">Time: <strong><a href="/zerxis/user/{{s.user.screen_name}}/status/{{s.id}}">{{s.relative_created_at}}</a></strong> </p>
+
+			<p>Via:{{s.source|safe}}</p>
+			</li>
+			{% endfor %}
+			{% endblock Replies %}
+              </ul>
+              <div class="cl">&nbsp;</div>
+            </div>
+          </div>
+          <!-- End Second Tab Content -->
+          <!-- Third Tab Content -->
+          <div class="tab-content">
+            <div class="items">
+              <div class="cl">&nbsp;</div>
+              <ul>
+			  {% block Directs %}
+			{% for s in Statuses %}
+			<li>
+			<p>
+			<div class="prof-image" > <a href="#">{# avatar user #}</a> </div>
+
+
+			<span><a href="/zerxis/user/{{s.user.screen_name}}/"><h2>{{s.user.name}}</h2></a></span><br />
+			<span>	
+			{{s.text|safe}}
+			<p class="price">Time: <strong><a href="/zerxis/user/{{s.user.screen_name}}/status/{{s.id}}">{{s.relative_created_at}}</a></strong> </p>
+
+			<p>Via:{{s.source|safe}}</p>
+			</li>
+			{% endfor %}
+			{% endblock Directs %}              </ul>
+              <div class="cl">&nbsp;</div>
+            </div>
+          </div>
+          <!-- End Third Tab Content -->
+          <!-- Fourth Tab Content -->
+          <div class="tab-content">
+            <div class="items">
+              <div class="cl">&nbsp;</div>
+              <ul>
+			  {% block Followers %}
+			{% for s in Directs %}
+			<li>
+			<p>
+			<div class="prof-image" > <a href="#">{# avatar user #}</a> </div>
+
+
+			<span><a href="/zerxis/user/{{s.user.screen_name}}/"><h2>{{s.user.name}}</h2></a></span><br />
+			<span>	
+			{{s.text|safe}}
+			<p class="price">Time: <strong><a href="/zerxis/user/{{s.user.screen_name}}/status/{{s.id}}">{{s.relative_created_at}}</a></strong> </p>
+
+			<p>Via:{{s.source|safe}}</p>
+			</li>
+			{% endfor %}
+			{% endblock Followers %}              </ul>
+              <div class="cl">&nbsp;</div>
+            </div>
+          </div>
+          <!-- End Fourth Tab Content -->
+          <!-- Fifth Tab Content -->
+          <div class="tab-content">
+            <div class="items">
+              <div class="cl">&nbsp;</div>
+              <ul>
+			  {% block Friends %}
+			{% for s in Directs %}
+			<li>
+			<p>
+			<div class="prof-image" > <a href="#">{# avatar user #}</a> </div>
+
+
+			<span><a href="/zerxis/user/{{s.user.screen_name}}/"><h2>{{s.user.name}}</h2></a></span><br />
+			<span>	
+			{{s.text|safe}}
+			<p class="price">Time: <strong><a href="/zerxis/user/{{s.user.screen_name}}/status/{{s.id}}">{{s.relative_created_at}}</a></strong> </p>
+
+			<p>Via:{{s.source|safe}}</p>
+			</li>
+			{% endfor %}
+			{% endblock Friends %}              </ul>
+              <div class="cl">&nbsp;</div>
+            </div>
+          </div>
+          <!-- End Fifth Tab Content -->
+		  </div>
+        <!-- Brands -->
+         <!-- End Brands -->
+  <!-- Footer -->
+        <div id="footer">
+          <div class="left"> <a href="/">Home</a> <span>|</span> <a href="#">Support</a> <span>|</span> <a href="#">My Account</a> <span>|</span> <a href="#">The Store</a> <span>|</span> <a href="#">Contact</a> </div>
+          <div class="right"> &copy; strifepark.com. Design by <a href="http://chocotemplates.com">ChocoTemplates.com</a> </div>
+        </div>
+        <!-- End Footer -->
+      </div>
+      <!-- End Container -->
+    </div>
+    <!-- End Content -->
+  </div>
+</div>
+<!-- End Main -->
+</body>
+</html>

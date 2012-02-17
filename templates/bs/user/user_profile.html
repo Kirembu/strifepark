@@ -1,0 +1,31 @@
+{% extends "bs/base.html" %}
+{% load avatar_tags %}
+{% block content %}
+<div class="well">
+ <span class="span6"><a href="/accounts/"><h2>{{profile.user}}</h2></a></span>
+{% avatar profile.user %}<br/>
+{% if user = profile.user %} <a href="/accounts/avatar/change">Change</a>{% endif %}
+
+Phone Number: {{profile.phone}}</br>
+Number of blog updates: {{update_count}}</br>
+{% if last_update %}
+Last Update:  <a href="/blog/{{ last_update.slug }}"> {{ last_update.title }} </a>{{ last_update.pub_date }}
+ {% else %}
+ User has never updated
+ {% endif %}
+		<div class="section" style="margin-top:37px">
+	<div class="headline"><img src="/static/images/find-me-on-the-web.png" style="width:139px" alt="Find me on the web"/></div>
+	<table class="icons">
+	  <tr>
+	    <td><a href="http://www.facebook.com/kirembu" rel="me"><img src="/static/images/facebook-big.png"/></a></td>
+	    <td class="last"><a href="mailto:in.kirembu@gmail.com" rel="me"><img src="/static/images/gmail-big.png"/></a></td>
+	  </tr>
+	  <tr>
+	    <td><a href="http://feeds.feedburner.com/kirembu" rel="me"><img src="/static/images/feed-big.png"/></a></td>
+	    <td class="last"><a href="http://friendfeed.com/kirembu" rel="me"><img src="/static/images/friendfeed-big.png"/></a></td>
+	  </tr>
+	</table>
+      </div>
+
+</div>
+{% endblock content %}

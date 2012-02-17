@@ -1,0 +1,33 @@
+{% extends "wing-the-air/base.html" %}
+{% block content %}
+<script>
+function vote(kind){
+ $.getJSON("/vote/",{ pk:{{ poll.pk }},vote: kind }, function(json){
+	alert("Was successful?: "+json['success']);
+	});
+	}
+
+function addClickHandlers() {
+	$("#upvote").click( function() { vote("up") });
+	$("#downvote".click( function() {vote("down" });
+	}
+$(document).ready(addClickHandlers);
+</script>
+
+<li>
+	<h1>{{ poll.question }}</h1>
+
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <form action="/polls/{{ poll.id }}/vote/" method="post"><br/>
+    {% csrf_token %}
+     <ul class="choices">{% for choice in poll.choice_set.all %}
+       
+        <li><input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+		<label for="choice{{ forloop.counter }}">{{ choice.choice }}</label><br /></li>
+		
+	{% endfor %}</ul>
+    <input type="submit" value="Vote" />
+    </form>
+</li>
+	{% endblock %}

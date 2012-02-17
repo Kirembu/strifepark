@@ -1,0 +1,14 @@
+{% extends "bootstrap/base.html" %}
+{% load avatar_tags %}
+{% block content %}
+
+ <span><a href="/accounts/"><h2>{{profile.user}}</h2></a></span><br />
+<div class="prof-image"> 
+<a href="accounts/user/{{profile.user}}">{% avatar profile.user %}</a><br/>
+{% if user = profile.user %} <a href="/accounts/avatar/change">Change</a>{% endif %} </div>
+
+Phone Number: {{profile.phone}}</br>
+Number of blog updates: {{update_count}}
+
+
+{% endblock content %}

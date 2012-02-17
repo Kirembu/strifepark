@@ -1,0 +1,63 @@
+{% extends "bs/base.html" %}
+{% load avatar_tags %}
+			  {% block nav %}
+          <ul class="nav">
+		  
+            <li ><a href="/">Home</a></li>
+			
+            <li><a href="/accounts/user/kirembu/">About</a></li>
+            <li><a href="/zerxis">Zerxis</a></li>
+			{% block auth %}			
+			{% if user.is_authenticated %}     
+			<li class="active"><a href="/accounts/avatar/change">Avatar</a></li>
+			<li class="dropdown" data-dropdown="dropdown">
+              <a href="#" class="dropdown-toggle">{{user.username}}</a>
+              <ul class="dropdown-menu">
+                <li class=""><a href="/accounts/">
+
+				{{user.username}}
+
+				</a></li>
+                <li class=""><a href="/accounts/logout">Logout</a></li>
+              </ul>
+            </li>
+			{% else %}
+						<li class="dropdown" data-dropdown="dropdown">
+              <a href="#" class="dropdown-toggle">Login</a>
+              <ul class="dropdown-menu">
+                <li class=""><a href="/accounts/login"></a>Login</li>
+                <li class=""><a href="/accounts/signup">Sign Up</a></li>
+              </ul>
+            </li>
+		{% endif %}			  
+	{%endblock auth %}
+	  
+          </ul>
+		  
+		  {% endblock nav %}
+{% block content %}
+    <p>Your current avatar: </p>
+    <a href="{% avatar_url user %}">{% avatar user %}</a>
+    {% if not avatars %}
+	<div class="well">
+        <p>You do not yet have an avatar.  Please upload one now.</p>
+    </div>
+	{% else %}
+		<div class="well">
+        <form method="POST" action="">
+		{% csrf_token %}
+            <ul class="media-grid">
+                {{ primary_avatar_form.as_ul }}
+            </ul>
+            <input type="submit" class="btn" value="Choose new Default" />
+        </form>
+		</div>
+    {% endif %}
+	<div class="well">
+    <form enctype="multipart/form-data" method="POST" action="">
+	{% csrf_token %}
+        <input class="input-file" type="file" name="avatar" value="Avatar Image" />
+        <input class="btn" type="submit" value="Upload New Image" />
+    </form>
+	</div>
+{% endblock %}
