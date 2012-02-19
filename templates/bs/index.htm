@@ -15,7 +15,7 @@
       {% avatar entry.author 48 "user-profile-link js-action-profile-avatar" %}
   <a class="label" data-user-id="{{user.id}}" href="/accounts/user/{{entry.author}}" title="Patrick">{{entry.author}}</a>
 
-      <div class="span8"><b>{{ entry.title|escape}}</b>
+      <div class="span11"><b>{{ entry.title|escape}}</b>
 		  {{ entry.markdown|escape|safe|truncatewords_html:"140"  }}  
 	  </div>
 
