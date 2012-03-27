@@ -131,7 +131,11 @@ INSTALLED_APPS = (
         'test',
         'avatar',
     #get social
+#<<<<<<< HEAD
     'social_auth',
+#=======
+#    'social_auth',
+#>>>>>>> 0dfa23bd4ec1274e2a24112f8a98ec47de16ff2c
     'test_app',
     'user_profile',
     'microblogging',
@@ -165,7 +169,7 @@ LOGGING = {
 }
 
 AUTHENTICATION_BACKENDS = (
-    'social_auth.backends.twitter.TwitterBackend',
+	'social_auth.backends.twitter.TwitterBackend',
     'social_auth.backends.facebook.FacebookBackend',
     'social_auth.backends.google.GoogleOAuthBackend',
     'social_auth.backends.google.GoogleOAuth2Backend',
@@ -179,7 +183,21 @@ AUTHENTICATION_BACKENDS = (
 ##    'social_auth.backends.contrib.dropbox.DropboxBackend',
 ##    'social_auth.backends.contrib.flickr.FlickrBackend',
     'social_auth.backends.OpenIDBackend',
-    'django.contrib.auth.backends.ModelBackend',
+    'social_auth.backends.twitter.TwitterBackend',
+#    'social_auth.backends.facebook.FacebookBackend',
+#    'social_auth.backends.google.GoogleOAuthBackend',
+#    'social_auth.backends.google.GoogleOAuth2Backend',
+#    'social_auth.backends.google.GoogleBackend',
+#    'social_auth.backends.yahoo.YahooBackend',
+#    'social_auth.backends.contrib.linkedin.LinkedinBackend',
+#    'social_auth.backends.contrib.livejournal.LiveJournalBackend',
+#    'social_auth.backends.contrib.orkut.OrkutBackend',
+#    'social_auth.backends.contrib.foursquare.FoursquareBackend',
+#    'social_auth.backends.contrib.github.GithubBackend',
+##    'social_auth.backends.contrib.dropbox.DropboxBackend',
+##    'social_auth.backends.contrib.flickr.FlickrBackend',
+#    'social_auth.backends.OpenIDBackend',
+	'django.contrib.auth.backends.ModelBackend',
 )
 
 AUTH_PROFILE_MODULE = "user_profile.UserProfile"
