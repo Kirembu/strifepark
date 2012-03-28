@@ -45,19 +45,15 @@ def user_mentions(request):
     return render_to_response('bs/twitter/zerxis_base.html',{
     'title':'Zerxis - Mentions','Statuses':statuses,'form':form,},context_instance=RequestContext(request))
 def get_api():
-<<<<<<< HEAD
     return twitter.Api(consumer_key='ih5MerLMDnRSTURoAJM4oQ',
                         consumer_secret='XJ8Y59Uy1vNS5k4GjNrbSgqZAjqyGiBvFZsHMY',
                         access_token_key='48656739-jZfVsVGHsHiqNDHN6CbzcXyoqq2UO6sXcUMVhIpI',
                         access_token_secret='JV1driFeXOAOGUjRM8rXTGPRDR5MokcMOnHe11raA')
-=======
 	#add the consumer_key and access tokens
     return twitter.Api(consumer_key='',
                         consumer_secret='',
                         access_token_key='',
                         access_token_secret='')
->>>>>>> 0dfa23bd4ec1274e2a24112f8a98ec47de16ff2c
-
 def status_update(request):
     error = None
     if request.method == 'POST':
