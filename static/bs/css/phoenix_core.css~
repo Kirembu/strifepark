@@ -1,0 +1,124 @@
+#logo{float:left;} 
+#logo a{text-indent:-9999px;
+background:transparent url(/static/phoenix/strifepark_logo_right2.png) no-repeat 20px 9px;
+display:block;
+color:#fff;
+width:100px;
+margin-right:0px;
+margin-left:50px;
+outline:none;} 
+
+.topbar #spavi {
+  margin-top:5px;
+  padding:1px 5px;
+  right:35px;
+  top:1px;
+  width:25px;
+  border:0px;
+  position:absolute;
+  float:right;
+  background-color: #333;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+#twitteroauth{display:block;background:url(/static/bs/assets/img/sign-in-with-twitter.png) no-repeat;} 
+
+.stream-item{position:relative;
+border-bottom:1px solid #ebebeb;
+min-height:20px;
+clear:both;
+display:block;
+outline:none;
+margin-top:-1px;
+border-top:1px solid transparent;
+} 
+
+
+.stream-item:hover,.hovered-stream-item{cursor:pointer;
+background:#f4f4f4;
+border-top:1px solid #EBEBEB;
+} 
+
+.stream-item .more{_visibility:hidden!important;
+display:none;
+width:17px;
+height:18px;
+background:red;
+position:absolute;
+margin-top:8px;
+z-index:1;
+outline:none;
+text-indent:-99999px;
+right:10px;
+background:url(/static/phoenix/img/sprite-icons.png) no-repeat -288px 0;} 
+
+
+.stream-item:hover .more{display:block;} 
+
+.stream-item .more:hover{display:block;background:url(/static/phoenix/img/sprite-icons.png) no-repeat -288px -32px;} 
+.span4{display:none;}
+.stream-item .more:hover .sidebar{display:block;}
+.expando-container .stream{background:none!important;} 
+
+
+.stream-item .voteup,.stream-item .votedown,.stream-item .clear{_visibility:hidden!important;
+display:none;
+width:17px;
+height:18px;
+background:red;
+position:absolute;
+z-index:1;
+outline:none;
+text-indent:-99999px;
+} 
+
+.stream-item .voteup{margin-top:-12px; right:23px;background:url(/static/bs/assets/img/thumbs_up.gif);}
+.stream-item .votedown{margin-top:-30px;right:45px;background:url(/static/bs/assets/img/thumbs_down.gif);}
+.stream-item .clear{margin-top:-55px; right:10px;background:url(/static/bs/assets/img/undo.gif);}
+.stream-item:hover .voteup,.stream-item:hover .votedown,.stream-item:hover .clear {display:block;} 
+.notifications{position:fixed; 
+right:5px; 
+font-size:13px;
+display:block;
+margin:44px 5px 5px 5px;
+padding:1px 5px;
+cursor:pointer;
+background:#E3F1FA;
+border:1px solid #C6E4F2;
+text-align:left;
+text-shadow:0 1px 0 #fff;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;
+z-index:2;
+  filter: alpha(opacity=50);
+  -khtml-opacity: 0.1;
+  -moz-opacity: 0.1;
+  opacity: 5;}
+  
+  
+#msgCount, .notifications{position:fixed; 
+right:75px; 
+font-size:13px;
+display:block;
+margin:0px 0px 0px 0px;
+padding:1px 5px;
+height:40px;
+cursor:pointer;
+background:#E3F1FA;
+border:1px solid #C6E4F2;
+text-align:left;
+text-shadow:0 1px 0 #fff;-moz-border-radius:3px;-webkit-border-radius:3px;border-radius:3px;
+z-index:2;
+  filter: alpha(opacity=50);
+  -khtml-opacity: 0.1;
+  -moz-opacity: 0.1;
+  opacity: 5;}
+#msgCount:hover{background:#D9ECF9;border-color:#B1D4E4;text-align:right;}
+#msgCount:active{background:#E3F1FA;}
+.notifications #messages .msg-item {max-width:100px;
+}
+#messages .msg-item {_visibility:hidden!important;
+display:none;}
+.notifications:hover  #messags.msg-item {display:block;
+border-color:#B1D4E4;
+margin-top:45px;text-align:left;}

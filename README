@@ -1,0 +1,13 @@
+Strifepark_apps:
+This are a collection of apps that have helped me learn django and python.
+
+Requires..
+
+-MySQLdb --> sudo apt-get install mysqldb
+-Django --> sudo apt-get install django
+
+...
+
+
+
+

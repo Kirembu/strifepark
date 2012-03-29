@@ -1,0 +1,19 @@
+from django.db import models
+class zerxis_user(models.Model):
+    
+    user = models.ForeingField
+    username = models.CharField(max_length=64,unique=True)
+    oauth_key = models.CharField(max_length=128)
+    oauth_secret = models.CharField(max_length=128)
+
+    'django.db.models.Model.__unicode__'
+    def __unicode__(self):
+        return self.username
+class zerxis_app(models.Model):
+    
+    app_name = models.CharField(max_length=16,unique=True)
+    consumer_key = models.CharField(max_length=128)
+    consumer_secret = models.CharField(max_length=128)
+    'django.db.models.Model.__unicode__'
+    def __unicode__(self):
+        return self.app_name

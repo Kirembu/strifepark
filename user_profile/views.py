@@ -5,6 +5,8 @@ from django.template import RequestContext
 from strifepark.models import Entry
 from django.contrib.auth.models import User
 
+## testing cookies
+
 def show_color(request,user_name=None):
     if "favorite_color" in request.COOKIES:
         return HttpResponse(user_name+" Your favorite color is %s" %\
