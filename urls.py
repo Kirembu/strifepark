@@ -52,12 +52,6 @@ urlpatterns = patterns('',
     (r'^music/', 'musiclib.views.index'),
     (r'^music/search/','musiclib.views.search'),
     (r'^tester','polls.views.tester'),
-    (r'^about',login_required(TemplateView.as_view(template_name='bs/login.html'))),
-##    (r'^alice/$','strifepark.views.alice'),
-##    (r'^alice/chapter/$','strifepark.views.results'),
-##    (r'^alice/chapter/(?P<chapter_no>\w+.+\w)/edit/$', 'strifepark.views.editText'),
-##    (r'^alice/chapter/(?P<chapter_no>\w.+\w)/$', 'strifepark.views.results'),
-
     (r'^blog/$','strifepark.blog.blog'),
     (r'^compose/$','strifepark.blog.post'),
                    
