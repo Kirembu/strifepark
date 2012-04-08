@@ -93,7 +93,6 @@ urlpatterns = patterns('',
 
     (r'^testapp/','test_app.views.show_color'),
 
-##    (r'^microblogging/',include(microblogging_urls)),
     
     )
 
@@ -116,4 +115,5 @@ if settings.DEBUG:
         url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT,
         }),
+      (r'', include('django.contrib.flatpages.urls')),
    )

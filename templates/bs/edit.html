@@ -1,5 +1,13 @@
 {% extends "sidebar.html" %}
-{% block content %}	
+{% block content %}
+ <script type="text/javascript" src="/static/tiny_mce/tiny_mce.js"></script>
+<script type="text/javascript">
+tinyMCE.init({
+mode: "textareas",
+theme: "simple"
+});
+</script>
+	
 	<h1>{{title}}</h1>
     <form action="/post/" method="post">
     {% csrf_token %}
