@@ -42,7 +42,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
     (r'^$', 'strifepark.blog.blog'),
-    (r'', include('django.contrib.flatpages.urls')),
     (r'^p/$','strifepark.blog.blogp'),
 
     (r'^messages/$','strifepark.views.messages'),
@@ -94,7 +93,7 @@ urlpatterns = patterns('',
 
     (r'^testapp/','test_app.views.show_color'),
 
-##    (r'^microblogging/',include(microblogging_urls)),
+    (r'', include('django.contrib.flatpages.urls')),
     
     )
 
