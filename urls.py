@@ -42,6 +42,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
     (r'^$', 'strifepark.blog.blog'),
+    (r'', include('django.contrib.flatpages.urls')),
     (r'^p/$','strifepark.blog.blogp'),
 
     (r'^messages/$','strifepark.views.messages'),
