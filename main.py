@@ -20,6 +20,11 @@ from google.appengine.ext.webapp import util
 
 from google.appengine.ext import webapp
 
+from google.appengine.dist import use_library
+use_library('django','1.3')
+from django.utils import simplejson as json
+from google.appengine.ext import db, webapp
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from django.core.handlers import wsgi
 

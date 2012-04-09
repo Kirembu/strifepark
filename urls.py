@@ -16,20 +16,15 @@ from django.contrib.auth.views import login, logout
 from django.views.generic import ListView, TemplateView
 
 from strifepark.views import index
-from strifepark.models import Entry
+
+## moving to appengine, this django ORM is scrap.
+## from strifepark.models import Entry
 
 from social_auth import urls as social_urls
 from avatar import urls as avatar_urls
 from microblogging import urls as microblogging_urls
 
 from voting.views import vote_on_object
-
-
-entry_dict = {
-    'model': Entry,
-    'template_object_name': 'index',
-    'allow_xmlhttprequest': True,
-}
 
 urlpatterns = patterns('',
     # Examples:
@@ -57,7 +52,6 @@ urlpatterns = patterns('',
                    
     (r'^blog/edit/(?P<entry_slug>\w+.+\w+)/$','strifepark.blog.edit'),
     (r'^blog/(?P<entry_slug>\w+.+\w)/$','strifepark.blog.entry'),
-    (r'^archive/$',ListView.as_view(model = Entry)),
                        
     (r'^polls/$', 'polls.views.index'),
     (r'^polls/(?P<poll_id>\d+)/$', 'polls.views.detail'),
@@ -88,8 +82,6 @@ urlpatterns = patterns('',
     (r'^m/',include(microblogging_urls)),
 
     (r'^vote/(?P<model>\w+)/(?P<object_id>\w+)/(?P<direction>\w+)/$','voting.views.vote_on_object'),
-    (r'^vote/(?P<object_id>\d+)/(?P<direction>up|down|clear)/?$', vote_on_object, entry_dict),
-
 
     (r'^testapp/','test_app.views.show_color'),
 

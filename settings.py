@@ -14,9 +14,9 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME':  'strifepark',                      # Or path to database file if using sqlite3.
-        'USER': 'strifeparkusr',                      # Not used with sqlite3.
-        'PASSWORD': 'NnNfrQw6sdNNpMBq',                  # Not used with sqlite3.
+        'NAME':  'sp_appengine',                      # Or path to database file if using sqlite3.
+        'USER': 'appengine',                      # Not used with sqlite3.
+        'PASSWORD': 'KW2XvFqFzL9Qsne4',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -130,11 +130,8 @@ INSTALLED_APPS = (
         'test',
         'avatar',
     #get social
-#<<<<<<< HEAD
+
     'social_auth',
-#=======
-#    'social_auth',
-#>>>>>>> 0dfa23bd4ec1274e2a24112f8a98ec47de16ff2c
     'test_app',
     'user_profile',
     'microblogging',
