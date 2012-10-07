@@ -1,6 +1,6 @@
 #logo{float:left;} 
 #logo a{text-indent:-9999px;
-background:transparent url(/static/phoenix/strifepark_logo_right2.png) no-repeat 20px 9px;
+background:transparent url(/static/bs/img/strifepark_logo_right2.png) no-repeat 20px 9px;
 display:block;
 color:#fff;
 width:100px;
@@ -52,12 +52,12 @@ z-index:1;
 outline:none;
 text-indent:-99999px;
 right:10px;
-background:url(/static/phoenix/img/sprite-icons.png) no-repeat -288px 0;} 
+background:url(/static/bs/img/sprite-icons.png) no-repeat -288px 0;} 
 
 
 .stream-item:hover .more{display:block;} 
 
-.stream-item .more:hover{display:block;background:url(/static/phoenix/img/sprite-icons.png) no-repeat -288px -32px;} 
+.stream-item .more:hover{display:block;background:url(/static/bs/img/sprite-icons.png) no-repeat -288px -32px;} 
 .span4{display:none;}
 .stream-item .more:hover .sidebar{display:block;}
 .expando-container .stream{background:none!important;} 

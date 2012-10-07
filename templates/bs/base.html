@@ -14,7 +14,7 @@
     <!-- Le styles -->
 
     <link href="/static/bs/bootstrap.css" rel="stylesheet">
-    <link href="/static/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    <link href="/static/bs/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
 	
 	{% endblock styles %}
 	{% block extra-styles %}
@@ -27,57 +27,6 @@
 	{% endblock icos %}
 	{% load avatar_tags %}
 	    <script src="/static/bs/js/util.js"></script>
-    <script>
-    function updateMsgCount() {
-	    downloadUrl("/messages/count/", "GET", null, onChatsReturned);
-		downloadUrl("/messages/", "GET", null, onMessagesReturned);
-	}
-	    function updateMessages() {
-	    downloadUrl("/messages/", "GET", null, onMessagesReturned);
-	}
-	function sendVote(form) {
-		
-		downloadUrl("/vote/", "POST", "content=" + encodeURI(document.getElementById("messages").value), onChatsReturned);
-		document.getElementById("chattext").value = "";
-	}
-
-	function onChatsReturned(responseText) {
-		document.getElementById("msgCount").innerHTML = responseText;
-		scrollToBottom();
-	}
-		function onMessagesReturned(responseText) {
-		document.getElementById("messages").innerHTML = responseText;
-		scrollToBottom();
-	}
-
-	function setup() {
-		window.setInterval("updateMsgCount()", 30000);
-		updateMsgCount();
-	}
-	
-	function scrollToBottom() {
-	  var chatDiv = document.getElementById("messages");
-	  chatDiv.scrollTop = chatDiv.scrollHeight;
-	}
-	
-	   function MessagesSeen() {
-	    downloadUrl("/messages/seen/", "GET", null, onChatsReturned);
-		$("logo").fadeOut();
-	}
-	function onVoteReturned(responseText) {
-		document.getElementById("messages").innerHTML = responseText;
-		scrollToBottom();
-	}
-	
-	
-		function vote(form) {
-		
-		downloadUrl("/vote", "POST", "content=" + encodeURI(document.getElementById("messages").value), onChatsReturned);
-		document.getElementById("chattext").value = "";
-	}
-
-
-	</script>
   </head>
 
   <body onload="setup();">
@@ -136,8 +85,7 @@
 		  
 		  {% endblock nav %}
 
-{% if user.is_authenticated %}<img id="spavi" width="24" height="24" src="{% avatar_url user %}" alt="{{ user.username }}">
-<div class="noticications"><div id="msgCount"></div><div id="messages"></div></div>{% endif %}
+{% if user.is_authenticated %}<img id="spavi" width="24" height="24" src="{% avatar_url user %}" alt="{{ user.username }}">{% endif %}
 
         </div>
       </div>
@@ -168,7 +116,6 @@
     <!-- /container -->
 
   </body>
-<!--   <link rel="stylesheet" href="/static/bs/css/phoenix_more.bundle.css" type="text/css" media="screen"> -->
       <script src="/static/bs/js/jquery.min.js"></script>
     <script src="/static/bs/js/jquery.tablesorter.min.js"></script>
     <script src="/static/bs/js/prettify.js"></script>

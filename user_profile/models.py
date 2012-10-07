@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from zerxis_twitter.models import zerxis_user
+from zerxis.models import zerxis_user
 # Create your models here.
 class UserProfile(models.Model):
     user = models.ForeignKey(User,unique=True)

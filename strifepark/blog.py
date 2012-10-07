@@ -36,11 +36,6 @@ from django.db.models import signals
 
 
 
-def messages(request):
-    return render_to_response('bs/messages.html',{},
-                              context_instance=RequestContext(request))
-messages = login_required(messages)
-    
 def blog(request):
     entry_list = Entry.objects.all().order_by('-pub_date')
     
@@ -173,7 +168,6 @@ def post(request):
             entry.updated = datetime.datetime.today()
             entry.author = request.user.username
             entry.save()
-            request.user.message_set.create(message='Blog entry saved. Title: '+entry.title)
             return HttpResponseRedirect('/blog/'+entry.slug)
     else:
         form = EntryForm()

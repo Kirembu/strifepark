@@ -9,7 +9,6 @@ from django.template import RequestContext, Template, Context
 from django.forms import ModelForm
 from django.template.defaultfilters import slugify
 from django.utils.decorators import method_decorator
-from django.contrib.messages import get_messages
 from django.contrib.auth.models import User
 
 import functools
@@ -20,7 +19,6 @@ import unicodedata
 
 
 from strifepark.models import Entry
-from polls.models import Poll, Choice
 
 from strifepark.pytext import pyText
 import datetime
@@ -79,26 +77,3 @@ def index(request):
                               {'poll':Poll.objects.all(),
                                
                                }, context_instance=RequestContext(request))
-
-def messages_seen(request):
-    storage = get_messages(request)
-    for message in storage:
-        msg.append(message)
-    return render_to_response('bs/messages.html', {}, context_instance=RequestContext(request))
-
-    
-def messages(request):
-    msg =[]
-    storage = get_messages(request)
-    for message in storage:
-        msg.append(message)
-    storage.used = False
-    return render_to_response('bs/messages.html', {'notifications':msg,'number':len(msg)}, context_instance=RequestContext(request))
-
-def msgCount(request):
-    msg =[]
-    storage = get_messages(request)
-    for message in storage:
-        msg.append(message)
-    storage.used = False
-    return render_to_response('bs/msgcount.html', {'number':len(msg)}, context_instance=RequestContext(request))
