@@ -1,6 +1,7 @@
 {% extends "bs/base.html" %}
    {% load avatar_tags %} 
     {% block content %}
+    {% block class_tab3 %}active{% endblock %}
 <div id="stream">
 
 		
@@ -13,7 +14,7 @@
   <a class="label" data-user-id="{{user.id}}" href="/accounts/user/{{entry.author}}" title="Patrick">{{entry.author}}</a>
 
       <div class="span11"><b>{{ entry.title|escape}}</b>
-		  {{ entry.markdown|escape|safe|truncatewords_html:"140"  }}  
+		  {{ entry.markdown|escape|safe|truncatewords_html:"140" }}  
 	  </div>
 
 	  <a href="/blog/{{entry.slug}}" class="tweet-timestamp js-permalink">

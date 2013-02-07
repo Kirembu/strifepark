@@ -1,10 +1,10 @@
 from zerxis.models import zerxis_user
 from django.contrib import admin
+from zerxis.models import CustomUser
+#from zerxis.models import RequestLog 
 
+class CustomUserOption(admin.ModelAdmin):
+    """Custom user options"""
+    search_fields = ('username', 'last_login')
 
-##class TwitterUserOption(admin.ModelAdmin):
-##    """Zerxis twitter user options"""
-##    search_fields = ('username', 'oauth_key')
-
-##admin.site.register(twitter_user,TwitterUserOption)
 admin.site.register(zerxis_user)

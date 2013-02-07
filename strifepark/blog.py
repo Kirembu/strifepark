@@ -55,7 +55,6 @@ def blog(request):
     
     return render_to_response('bs/index.htm',{
         'title':'Strife Park','Entry':entries.object_list,'paginator':entries,'truncate':True},context_instance=RequestContext(request))
-blog = login_required(blog)
 
 def blogp(request):
     entry_list = Entry.objects.all().order_by('-pub_date')

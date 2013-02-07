@@ -1,7 +1,13 @@
 # Django settings for a generic project.
 import os
 
-DEBUG = True
+try:
+    import social_auth
+except ImportError:
+    import sys
+    sys.path.insert(0, "..")
+
+DEBUG = True 
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -30,14 +36,22 @@ if 'VCAP_SERVICES' in os.environ:
 else:
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.mysql",
-            "NAME": "sp_appengine",
-            "USER": "appengine",
-            "PASSWORD": "KW2XvFqFzL9Qsne4",
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": "test.db",
+            "USER": "",
+            "PASSWORD": "",
             "HOST": "",
             "PORT": "",
             }
         }
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake'
+    }
+}
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -151,31 +165,36 @@ INSTALLED_APPS = (
     'zerxis',
 )
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#    'filters': {
-#         'require_debug_false': {
-#             '()': 'django.utils.log.RequireDebugFalse'
-#         }
-#     },
-#     'handlers': {
-#         'mail_admins': {
-#             'level': 'ERROR',
-#            'filters': ['require_debug_false'],
-#            'class': 'django.utils.log.AdminEmailHandler'
-#         }
-#     },
-#     'loggers': {
-#         'django.request': {
-#             'handlers': ['mail_admins'],
-#             'level': 'ERROR',
-#             'propagate': True,
-#         },
-#     }
-# }
+
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.contrib.messages.context_processors.messages',
+    'social_auth.context_processors.social_auth_by_type_backends',
+)
+
+LOGIN_REDIRECT_URL = '/'
+
+
+LASTFM_USER = '' 
+LASTFM_API_KEY = ''
+LASTFM_SECRET = ''
+LASTFM_CHART_TYPE = 'top_artists'
+LASTFM_WIDGET_TITLE = 'Weekly Top Artists'
+LASTFM_NUM_IMAGES ='12'
+LASTFM_TOP_ARTISTS_PERIOD = '7day'
+LASTFM_IMG_SIZE ='large'
+
+
+try:
+    from local_settings import *
+except:
+    pass

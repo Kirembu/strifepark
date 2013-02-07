@@ -29,7 +29,7 @@
 	    <script src="/static/bs/js/util.js"></script>
   </head>
 
-  <body onload="setup();">
+  <body>
 
     <div class="topbar">
       <div class="fill">
@@ -38,8 +38,7 @@
 		<div id="logo">
 			<a class="brand" href="/">Strife Park</a>
 		</div>
-
-          <!-- <a class="brand" href="/">Strife Park</a> -->
+		
 		  <form id="search-form" class="js-search-form" action="/search" method="GET">
     <span class="glass js-search-action"><i></i></span>
     <input value="" placeholder="Search" name="q" id="search-query" type="text">
@@ -47,14 +46,14 @@
 			  {% block nav %}
           <ul class="nav">
 
-            <li class="active"><a href="/">Home</a></li>
-			
-            <li><a href="/accounts/user/kirembu/">About</a></li>
-            <li><a href="/zerxis">Zerxis</a></li>
+            <li class="{% block class_tab1 %}inactive{% endblock %}"><a href="/">Home</a></li>
+            <li class="{% block class_tab2 %}inactive{% endblock %}"><a href="/about">About</a></li>
+            <li class="{% block class_tab3 %}inactive{% endblock %}"><a href="/blog">Blog</a></li>
+            <li class="{% block class_tab4 %}inactive{% endblock %}"><a href="/zerxis">Zerxis</a></li>
 			{% block auth %}			
 			{% if user.is_authenticated %}     
-			<li><a href="/accounts/avatar/change">Avatar</a></li>
-			<li><a href="/compose">Compose</a></li>
+			<li class="{% block class_tab5 %}inactive{% endblock %}"><a href="/accounts/avatar/change">Avatar</a></li>
+			<li class="{% block class_tab6 %}inactive{% endblock %}"><a href="/compose">Compose</a></li>
 
 			
 			<li class="dropdown" data-dropdown="dropdown">

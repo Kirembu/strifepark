@@ -69,9 +69,6 @@ def editText(request, chapter_no='none'):
         return render_to_response('bs/compose.html', {'form':form,
                                                             'title':chapter_no,                                                               
                                                          'ip_address': request.META['REMOTE_ADDR']}, context_instance=RequestContext(request))
-def books(request):
-    return render_to_response('strifepark/books.html')
-
 def index(request):
     return render_to_response('bs/polls.html',
                               {'poll':Poll.objects.all(),
