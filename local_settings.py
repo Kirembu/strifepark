@@ -1,9 +1,9 @@
 import random
 
-TWITTER_CONSUMER_KEY              = 'PVdvmAOe2Bi6H655R4dTmg'
-TWITTER_CONSUMER_SECRET           = 'vWs3woacEmWyp1Gf7oiEL9zLPHJVOcooBLhxW6bc0'
-FACEBOOK_APP_ID                   = '378195265589215'
-FACEBOOK_API_SECRET               = '2091b48176b1755e27f87972373d8e38'
+TWITTER_CONSUMER_KEY              = ''
+TWITTER_CONSUMER_SECRET           = ''
+FACEBOOK_APP_ID                   = ''
+FACEBOOK_API_SECRET               = ''
 LINKEDIN_CONSUMER_KEY             = ''
 LINKEDIN_CONSUMER_SECRET          = ''
 SKYROCK_CONSUMER_KEY              = ''
